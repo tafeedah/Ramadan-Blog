@@ -5,7 +5,7 @@ services:
     # remove the next line in case you want to use this docker-compose separately
     # as otherwise it would complain for absence of Dockerfile
     build: .
-    image: umputun/remark42:latest
+    image: umputun/remark42:master
     container_name: "remark42"
     hostname: "remark42"
     restart: always
@@ -17,18 +17,20 @@ services:
         max-file: "5"
 
     # uncomment to expose directly (no proxy)
-    #ports:
-    #  - "80:8080"
+    ports:
+      - "8888:8080"
     #  - "443:8443"
 
     environment:
-      - REMARK_URL
-      - SECRET
+      - REMARK_URL=http://ramadan.eu5.org/blog-single.html
+      - ALLOWED_HOSTS=www.ramadan.eu5.org
+      - SITE=Ramadan
+      - SECRET=12345678
       - DEBUG=true
       - AUTH_GOOGLE_CID
       - AUTH_GOOGLE_CSEC
-      - AUTH_GITHUB_CID
-      - AUTH_GITHUB_CSEC
+      - AUTH_GITHUB_CID=833ef9315ee0ca6ff51f
+      - AUTH_GITHUB_CSEC=b33df5ad8fb04921ae622170558b2bced5bf18a4
       - AUTH_FACEBOOK_CID
       - AUTH_FACEBOOK_CSEC
       - AUTH_DISQUS_CID
